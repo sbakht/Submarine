@@ -10,3 +10,4 @@ git branch #shows all branches
 git checkout *branchtitle* #branches to branch with specified title
 git merge *branchtitle* #moves changes in branch to main file system
 git revert HEAD #reverts last commit
+git add/rm *filename* #gets ready to add/remove files on next commit
