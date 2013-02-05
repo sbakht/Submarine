@@ -1,0 +1,4 @@
+git status #shows whether files have been modified andor are ready to be committed
+git checkout filename #removes changes made since last commit of file
+git add filename (or .) #prepares file or all files in git directory if . is used, to be commited.files are sent 
+git commit #commits changes made to files that have been added.

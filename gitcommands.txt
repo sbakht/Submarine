@@ -1,0 +1,11 @@
+git init #creates a new project from the current directory on github
+git status #shows whether files have been modified andor are ready to be committed
+git pull *originorsubdirectory* #pulls changes from the server that other users have made, that your computer does not yet have
+git checkout *filename* #removes changes made since last commit of file
+git add *filename* (or .) #prepares file or all files in git directory if . is used, to be commited. file state after the LAST add is what is sent via commit call.
+git commit -m *message* #commits changes made to files that have been added.
+git branch *branchtitle* #creates branch of origin allows modifying files on a separate timeline
+git branch #shows all branches
+git checkout *branchtitle* #branches to branch with specified title
+git merge *branchtitle* #moves changes in branch to main file system
+git revert HEAD #reverts last commit
