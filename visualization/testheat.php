@@ -147,7 +147,7 @@
   <body onload="initialize()">
     <?php
       for($i = 0; $i < $numSub; $i++) {
-        echo "<input type=checkbox checked=on onclick=toggleHeatmap(".$i.")>Toggle Submarine ".$i." Data</input><br>";
+        echo "<input type=checkbox checked=on onclick=toggleHeatmap(".$i.")>Toggle Submarine ".($i + 1)." Data</input><br>";
       }
     ?>
     <div id="map_canvas" style="height: 600px; width: 800px;"></div>
