@@ -9,8 +9,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>     
     
     <?php
-    $lol = file_get_contents("testdata1.txt");
-    $lol2 = file_get_contents("testdata2.txt"); //start coding multiple subs here
+    $sub1 = file_get_contents("testdata1.txt");
+    $sub2 = file_get_contents("testdata2.txt"); //start coding multiple subs here
     //echo $lol;
     // function escapeJavaScriptText($string)
 // {
@@ -22,24 +22,38 @@
       // Adding 500 Data Points
       var map, pointarray, heatmap;
       var heatmapData = [];
+      var heatmapData2 = [];
       // var latitude, longitude, temperature;
       
-      var work = <?php echo json_encode($lol); ?>;
+      var work = <?php echo json_encode($sub1); ?>;
       //alert(work);
       
       var lines = work.split("|");
       for(i = 0; i < lines.length; i++) {
         var splittedline = lines[i].split(" "); //splits on space to seperate lat, long, temp
-        //alert(splittedline);
         latitude = parseFloat(splittedline[0]); //might need float
         longitude = parseFloat(splittedline[1]);
         temperature = parseFloat(splittedline[2]);
-          var derp = {
-              location: new google.maps.LatLng(latitude,longitude),
-              weight: temperature
-            };
-                   // derp = new google.maps.LatLng(latitude,longitude);
+        var derp = {
+            location: new google.maps.LatLng(latitude,longitude),
+            weight: temperature
+          };
         heatmapData.push(derp);
+      }
+      
+      var work = <?php echo json_encode($sub2); ?>;
+      
+      var lines = work.split("|");
+      for(i = 0; i < lines.length; i++) {
+        var splittedline = lines[i].split(" "); //splits on space to seperate lat, long, temp
+        latitude = parseFloat(splittedline[0]); //might need float
+        longitude = parseFloat(splittedline[1]);
+        temperature = parseFloat(splittedline[2]);
+        var derp = {
+            location: new google.maps.LatLng(latitude,longitude),
+            weight: temperature,
+          };
+        heatmapData2.push(derp);
       }
 
       // $.ajax({
@@ -87,10 +101,20 @@
         });
 
         heatmap.setMap(map);
+        
+        heatmap2 = new google.maps.visualization.HeatmapLayer({
+          data: heatmapData2
+        });
+
+        heatmap2.setMap(map);
       }
 
       function toggleHeatmap() {
         heatmap.setMap(heatmap.getMap() ? null : map);
+      }
+      
+      function toggleHeatmap2() {
+        heatmap2.setMap(heatmap2.getMap() ? null : map);
       }
 
       function changeGradient() {
@@ -127,7 +151,8 @@
 
   <body onload="initialize()">
     <div id="map_canvas" style="height: 600px; width: 800px;"></div>
-    <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+    <button onclick="toggleHeatmap()">Toggle 1st Submarine Data</button>
+    <button onclick="toggleHeatmap2()">Toggle 2nd Submarine Data</button>
     <button onclick="changeGradient()">Change gradient</button>
     <button onclick="changeRadius()">Change radius</button>
     <button onclick="changeOpacity()">Change opacity</button>
